@@ -1,0 +1,2 @@
+gender	age	h	w	bpmax	bpmin	tc	hdl	smoke	t2d	hypdrug
+m	45	172	78	130	85	190	48	0	0	1
