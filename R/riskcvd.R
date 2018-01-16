@@ -28,6 +28,8 @@ sum <- as.numeric(coeff_cvd[,1])*input$age + as.numeric(coeff_cvd[,2])*input$bpm
 RA <- 1 - (as.numeric(coeff_cvd[,8])^(exp(sum - as.numeric(coeff_cvd[,9]))))
 
 # calculate the relative risk RR
+# please note: do not hard code here this value
+# the cnditional extraction from "coeff" dataframe should be implemented
 RR <- RA/0.08
 
 
