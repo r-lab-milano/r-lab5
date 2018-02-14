@@ -21,10 +21,10 @@ user$hypfam = 1
 
 risk_hypertension <- function(params, user) {
   
-  user$gender <- if_else(user$gender == 'm', 1, 0) 
+  user$gender <- if_else(user$gender == 'm', 0, 1) 
   
   user$bmi <- user$w / (user$h / 100)^2
-  user$ag_bpmin <- user$bmi * user$bpmin
+  user$age_bpmin <- user$bmi * user$bpmin
   
   params <- params[which(params$disease == 'hyp'), 'male']
   
@@ -33,6 +33,9 @@ risk_hypertension <- function(params, user) {
   I <- params[params$shiny_names == 'I', 'male']
   S <- params[params$shiny_names == 'S', 'male']
   
-  hyp <- 1 - exp(-exp((log(4) - ( I + sum(params$male * unlist(user)[params$shiny_names], na.rm = TRUE))) / S))
+  data.frame(rowname = names(user), user = t(as.data.frame(user)) %>% 
+               inner_join(params, by = c('shiny_names' = 'rowname'))
+  
+  hyp <- 1 - exp(-exp((log(4) - ( I + sum(params$male * data.frame(rowname = names(user), user = t(as.data.frame(user))), na.rm = TRUE))) / S))
   
   }
