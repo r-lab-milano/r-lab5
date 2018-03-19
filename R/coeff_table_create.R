@@ -19,6 +19,8 @@ coeff_tbl_long <- reshape_coeff_tbl(coeff_tbl)
 
 # manipulate
 coeff_tbl_long <- coeff_tbl_long %>%
-  mutate(value = as.numeric(value))
+  mutate(value = as.numeric(value),
+         sex = case_when(sex == "male" ~ "m",
+                         sex == "female" ~ "f"))
 
 write.csv(coeff_tbl_long, "data/coeff_table.csv")
