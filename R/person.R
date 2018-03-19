@@ -19,8 +19,7 @@ p <- list(weight = 79,
           diet   = 1)
 
 bmi_compute <- function(p){
-  bmi <- p$weight/((p$height)/100)^2
-  bmi
+  p$bmi <- p$weight/((p$height)/100)^2
 }
 
 bmi_compute(p)
